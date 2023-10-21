@@ -5,6 +5,20 @@ const http = require("http");
 const path = require("path");
 const expressServer = http.createServer(app);
 
+// configure socket
+const { Server } = require("socket.io");
+const io = new Server(expressServer);
+
+io.on("connection", function (socket) {
+  console.log("New User Connected");
+
+  socket.on("disconnect", function () {
+    console.log("User Disconnected!");
+  });
+});
+
+
+
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "./index.html"));
 });
