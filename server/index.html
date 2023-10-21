@@ -8,12 +8,16 @@
 </head>
 
 <body>
-  <h1>Hello Socket</h1>
+  <h1 id="myTime"></h1>
 
-  <!-- configure on server side -->
+  <!-- configure on client side -->
   <script src="/socket.io/socket.io.js"></script>
   <script>
     let socket = io();
+    socket.on("message", function (msg) {
+      document.getElementById("myTime").innerHTML = ""
+      document.getElementById("myTime").innerHTML = msg
+    })
   </script>
 </body>
 
