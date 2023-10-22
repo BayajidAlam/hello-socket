@@ -12,17 +12,24 @@ const io = new Server(expressServer);
 io.on("connection", function (socket) {
   console.log("New User Connected");
 
+  // send data after a time
+  setTimeout(() => {
+    socket.send("Welcome To server Side to Client");
+  }, 3000);
+
   // send data continuously
   setInterval(() => {
     let date = new Date();
     let time = date.getTime();
     socket.send(time);
-  },500);
+  }, 10);
 
-  // send data after a time
-  setTimeout(() => {
-    socket.send("Welcome To server Side to Client");
-  }, 3000);
+  // create a custom event
+  setInterval(() => {
+    let date = new Date();
+    let time = date.getTime();
+    socket.emit("myEvent", time);
+  }, 10);
 
   socket.on("disconnect", function () {
     console.log("User Disconnected!");
