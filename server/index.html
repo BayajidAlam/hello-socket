@@ -15,28 +15,34 @@
   <!-- configure on client side -->
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    let socket = io("/sell");
+    let socket = io();
     // regular event 
-    socket.on("message", function (msg) {
-      document.getElementById("myTime").innerHTML = ""
-      document.getElementById("myTime").innerHTML = msg
-    })
+    // socket.on("message", function (msg) {
+    //   document.getElementById("myTime").innerHTML = ""
+    //   document.getElementById("myTime").innerHTML = msg
+    // })
 
     // custom event
-    socket.on("myEvent", function (msg) {
-      document.getElementById("myTime").innerHTML = ""
-      document.getElementById("myTime").innerHTML = msg
-    })
+    // socket.on("myEvent", function (msg) {
+    //   document.getElementById("myTime").innerHTML = ""
+    //   document.getElementById("myTime").innerHTML = msg
+    // })
 
     // send data from client to server 
-    function send() {
-      let name = document.getElementById("myInput").value
-      socket.emit("MyClientEvent",name)
-    }
+    // function send() {
+    //   let name = document.getElementById("myInput").value
+    //   socket.emit("MyClientEvent",name)
+    // }
 
     // receive broadcasting data 
-    socket.on("MyBroadCast", function (data) {
-      document.getElementById("myTime").innerHTML = ""
+    // socket.on("MyBroadCast", function (data) {
+    //   document.getElementById("myTime").innerHTML = ""
+    //   document.getElementById("myTime").innerHTML = data
+    // })
+
+    // access a room 
+    socket.on("rest",function(data){
+        document.getElementById("myTime").innerHTML = ""
       document.getElementById("myTime").innerHTML = data
     })
 
