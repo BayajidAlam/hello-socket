@@ -9,21 +9,37 @@
 
 <body>
   <h1 id="myTime"></h1>
+  <!-- <input id="myInput" type="text">
+  <button onclick="send()" id="my-button">Send</button> -->
 
   <!-- configure on client side -->
   <script src="/socket.io/socket.io.js"></script>
   <script>
     let socket = io();
+    // regular event 
     // socket.on("message", function (msg) {
     //   document.getElementById("myTime").innerHTML = ""
     //   document.getElementById("myTime").innerHTML = msg
     // })
-    // custom event 
-    socket.on("myEvent", function (msg) {
+
+    // custom event
+    // socket.on("myEvent", function (msg) {
+    //   document.getElementById("myTime").innerHTML = ""
+    //   document.getElementById("myTime").innerHTML = msg
+    // })
+
+    // send data from client to server 
+    // function send() {
+    //   let name = document.getElementById("myInput").value
+    //   socket.emit("MyClientEvent",name)
+    // }
+
+    // receive broadcasting data 
+    socket.on("MyBroadCast", function (data) {
       document.getElementById("myTime").innerHTML = ""
-      document.getElementById("myTime").innerHTML = msg
+      document.getElementById("myTime").innerHTML = data
     })
+
   </script>
 </body>
-
 </html>
